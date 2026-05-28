@@ -1,4 +1,4 @@
-// Boletimfácil v4
+// Boletimfácil v5
 const STORAGE_KEY = "boletimfacil_subjects_v4";
 const OLD_STORAGE_KEYS = [
   "boletimfacil_subjects_v3",
@@ -390,7 +390,7 @@ function render() {
 function exportData() {
   const payload = {
     app: "Boletimfácil",
-    version: 4,
+    version: 5,
     exportedAt: new Date().toISOString(),
     subjects: state.subjects
   };
@@ -401,6 +401,44 @@ function exportData() {
   a.download = `boletimfacil-backup-${new Date().toISOString().slice(0,10)}.json`;
   a.click();
   URL.revokeObjectURL(url);
+}
+
+
+function importDataFromFile(file) {
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    try {
+      const payload = JSON.parse(reader.result);
+      const importedSubjects = Array.isArray(payload)
+        ? payload
+        : Array.isArray(payload.subjects)
+          ? payload.subjects
+          : null;
+
+      if (!importedSubjects) {
+        alert("Arquivo inválido. Selecione um backup exportado pelo Boletimfácil.");
+        return;
+      }
+
+      const shouldImport = confirm("Importar este backup? As notas atuais serão combinadas com as matérias fixas do app.");
+      if (!shouldImport) return;
+
+      state.subjects = ensureFixedSubjects(importedSubjects);
+      save();
+      render();
+
+      alert("Backup importado com sucesso!");
+    } catch (error) {
+      alert("Não foi possível ler o arquivo. Verifique se é um .json válido do Boletimfácil.");
+    } finally {
+      $("importFile").value = "";
+    }
+  };
+
+  reader.readAsText(file, "utf-8");
 }
 
 function bindEvents() {
@@ -418,6 +456,8 @@ function bindEvents() {
 
   $("closeDetail").addEventListener("click", () => $("detailModal").style.display = "none");
   $("exportBtn").addEventListener("click", exportData);
+  $("importBtn").addEventListener("click", () => $("importFile").click());
+  $("importFile").addEventListener("change", e => importDataFromFile(e.target.files?.[0]));
 
   document.querySelectorAll(".pill").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -436,7 +476,7 @@ let refreshing = false;
 async function registerSW() {
   if (!("serviceWorker" in navigator)) return;
   try {
-    const reg = await navigator.serviceWorker.register("./sw.js?v=4");
+    const reg = await navigator.serviceWorker.register("./sw.js?v=5");
     reg.update();
 
     setInterval(() => reg.update(), 60 * 60 * 1000);

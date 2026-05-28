@@ -1,9 +1,9 @@
-const CACHE_NAME="boletimfacil-v4";
+const CACHE_NAME="boletimfacil-v5";
 const ASSETS=[
   "./",
   "./index.html",
-  "./styles.css?v=4",
-  "./app.js?v=4",
+  "./styles.css?v=5",
+  "./app.js?v=5",
   "./manifest.json",
   "./icon-192.png",
   "./icon-512.png",

@@ -29,3 +29,5 @@
   opacity: .72;
   color: var(--muted);
 }
+
+.header-actions{display:flex;align-items:center;gap:8px}
