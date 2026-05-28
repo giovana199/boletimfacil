@@ -11,3 +11,21 @@
 .empty{text-align:center;color:var(--muted2);padding:42px 18px;background:rgba(255,255,255,.03);border:1px dashed var(--border);border-radius:22px;line-height:1.7}.fab{position:fixed;right:18px;bottom:22px;z-index:60;width:62px;height:62px;border:none;border-radius:22px;background:linear-gradient(135deg,var(--pink),var(--violet),var(--blue));color:white;font-size:2rem;line-height:1;box-shadow:0 14px 36px rgba(168,85,247,.42);cursor:pointer}.fab:active{transform:scale(.94)}
 .overlay{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.72);display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}.modal{width:100%;max-width:720px;max-height:92vh;overflow-y:auto;border-radius:28px 28px 0 0;border:1px solid var(--border);border-bottom:none;background:#17172a;padding:18px 16px calc(22px + env(safe-area-inset-bottom,0));animation:up .22s ease}@keyframes up{from{transform:translateY(50px);opacity:0}to{transform:translateY(0);opacity:1}}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.close-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:rgba(255,255,255,.045);color:var(--muted);cursor:pointer}.field{display:block;margin-bottom:12px}.field span{display:block;color:var(--muted);font-size:.68rem;font-weight:900;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}.field input,.field select{width:100%;border:1px solid var(--border);background:var(--bg3);color:var(--text);border-radius:15px;padding:13px 12px;font-size:.92rem;outline:none;appearance:none}.field input:focus,.field select:focus{border-color:rgba(168,85,247,.7)}.grades-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:4px 0 14px}.primary-btn{width:100%;border:none;border-radius:16px;padding:14px;background:linear-gradient(135deg,var(--pink),var(--violet),var(--blue));color:white;font-weight:900;font-size:.92rem;cursor:pointer}.detail-box{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:16px;padding:12px;margin-bottom:10px}.detail-box h3{font-size:.92rem;margin-bottom:6px}.detail-box p{color:var(--muted);font-size:.82rem;line-height:1.5}
 @media(max-width:370px){.hero-card h1{font-size:2.55rem}.stats-grid{gap:6px}.stat-card{padding:11px 8px}.grade-dots{gap:5px}}
+
+.grade-button {
+  width: 100%;
+  color: var(--text);
+  cursor: pointer;
+  font-family: inherit;
+}
+.grade-button:active {
+  transform: scale(.97);
+  border-color: rgba(139,92,246,.55);
+}
+.icon-btn.muted {
+  color: var(--muted2);
+}
+.field input:disabled {
+  opacity: .72;
+  color: var(--muted);
+}

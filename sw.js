@@ -1,9 +1,9 @@
-const CACHE_NAME="boletimfacil-v3";
+const CACHE_NAME="boletimfacil-v4";
 const ASSETS=[
   "./",
   "./index.html",
-  "./styles.css?v=3",
-  "./app.js?v=3",
+  "./styles.css?v=4",
+  "./app.js?v=4",
   "./manifest.json",
   "./icon-192.png",
   "./icon-512.png",
@@ -24,15 +24,11 @@ self.addEventListener("activate",event=>{
 });
 
 self.addEventListener("message",event=>{
-  if(event.data&&event.data.type==="SKIP_WAITING"){
-    self.skipWaiting();
-  }
+  if(event.data&&event.data.type==="SKIP_WAITING") self.skipWaiting();
 });
 
 self.addEventListener("fetch",event=>{
-  if(event.request.method!=="GET")return;
-
-  const url=new URL(event.request.url);
+  if(event.request.method!=="GET") return;
 
   if(event.request.mode==="navigate"){
     event.respondWith(
